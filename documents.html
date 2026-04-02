@@ -1,0 +1,73 @@
+<html>
+
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <link rel="manifest"
+        href="data:application/manifest+json;base64,eyJuYW1lIjoiIiwic2hvcnRfbmFtZSI6IiIsInRoZW1lX2NvbG9yIjoiIzEwMTMxNyIsImJhY2tncm91bmRfY29sb3IiOiIjMTAxMzE3IiwiZGlzcGxheSI6InN0YW5kYWxvbmUifQ==">
+    <title>mObywatel</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <link rel="stylesheet" href="assets/documents.css">
+    <link rel="stylesheet" href="assets/main.css">
+    <link rel="icon" type="image/x-icon" href="assets/logo.png">
+    <link rel="apple-touch-icon" href="assets/logo.png">
+    <link rel="shortcut icon" href="assets/logo.png">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, initial-scale=0.8, user-scalable=no">
+    <meta name="mobile-web-app-capable" content="yes">
+</head>
+
+<body>
+    <div class="bottom_bar">
+        <div class="bottom_bar_grid">
+            <div class="bottom_element_grid" send="documents.html">
+                <div class="bottom_element_image documents documents_open"></div>
+                <p class="bottom_element_text open">Dokumenty</p>
+            </div>
+            <div class="bottom_element_grid" send="services.html">
+                <div class="bottom_element_image services"></div>
+                <p class="bottom_element_text">Usługi</p>
+            </div>
+            <div class="bottom_element_grid" send="qr.html">
+                <div class="bottom_element_image qr"></div>
+                <p class="bottom_element_text">Kod QR</p>
+            </div>
+            <div class="bottom_element_grid" send="more.html">
+                <div class="bottom_element_image more"></div>
+                <p class="bottom_element_text">Więcej</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="page_top">
+            <img class="main_page_logo" src="assets/images/logo_large.png">
+            <img class="main_page_bell" src="assets/images/bell.png">
+        </div>
+        <p class="main_title">Dokumenty</p>
+        <div class="card_box" onclick="window.location.href = 'card.html';">
+            <img class="card_background" src="assets/images/card_background.webp">
+            <p class="card_name">mDowód</p>
+            <div class="card_eagle_background">
+                <div class="card_filler"></div>
+                <img class="card_eagle" src="assets/images/card_eagle.png">
+            </div>
+        </div>
+        <p class="main_button" style="margin-left: 5px; margin-right: auto; margin-top: 20px; font-size: 16px;">Dostosuj
+            widok</p>
+    </div>
+
+    <div class="fab_document"
+        style="position: fixed; bottom: 130px; right: 15px; background-color: #4ba4fe; color: black; padding: 16px 24px; border-radius: 16px; font-weight: 500; font-size: 19px; margin: 0; display: flex; align-items: center; justify-content: center; z-index: 10;">
+        ✛ Dodaj dokument
+    </div>
+
+    <script src="assets/bar.js"></script>
+    <script src="assets/manifest.js"></script>
+    <script src="assets/cache.js"></script>
+    <script src="assets/flow.js"></script>
+</body>
+
+</html>

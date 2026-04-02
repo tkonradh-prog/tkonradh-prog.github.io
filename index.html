@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <title>mDowód – Kreator</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/x-icon" href="assets/images/logo_large.png">
+    <link rel="apple-touch-icon" href="assets/images/logo_large.png">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #014A93;
+            --primary-hover: #013a75;
+            --bg-color: #f2f2f7;
+            --card-bg: #ffffff;
+            --text-main: #1c1c1e;
+            --text-muted: #8e8e93;
+            --border: #e5e5ea;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            margin: 0;
+            padding: 0;
+            color: var(--text-main);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .header {
+            background-color: var(--card-bg);
+            padding: 20px;
+            padding-top: max(20px, env(safe-area-inset-top));
+            text-align: center;
+            position: sticky;
+            top: 0;
+            border-bottom: 1px solid var(--border);
+            z-index: 100;
+            backdrop-filter: blur(10px);
+            background-color: rgba(255, 255, 255, 0.85);
+        }
+
+        .header h1 {
+            margin: 0;
+            color: var(--primary);
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            padding-bottom: max(40px, env(safe-area-inset-bottom));
+        }
+
+        .section-title {
+            font-size: 13px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            font-weight: 600;
+            margin: 25px 0 10px 15px;
+            letter-spacing: 0.5px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+        }
+
+        .input-group {
+            display: flex;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+            padding: 4px 15px;
+            background: transparent;
+            transition: background 0.2s;
+        }
+        
+        .input-group:focus-within {
+            background: #f8fbff;
+        }
+
+        .input-group:last-child {
+            border-bottom: none;
+        }
+
+        .input-group label {
+            width: 140px;
+            font-weight: 500;
+            font-size: 15px;
+            color: var(--text-main);
+            flex-shrink: 0;
+        }
+
+        .input-group input,
+        .input-group select {
+            flex-grow: 1;
+            padding: 12px 0;
+            border: none;
+            background: transparent;
+            font-size: 16px;
+            color: var(--text-main);
+            font-family: inherit;
+        }
+
+        .input-group input:focus,
+        .input-group select:focus {
+            outline: none;
+        }
+
+        .input-group input::placeholder {
+            color: #c7c7cc;
+        }
+
+        .file-upload {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 15px;
+            cursor: pointer;
+        }
+
+        .file-upload input[type="file"] {
+            position: absolute;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+
+        .file-upload-text {
+            font-weight: 500;
+            font-size: 16px;
+            color: var(--primary);
+        }
+
+        .file-status {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        button[type="submit"] {
+            width: 100%;
+            background-color: var(--primary);
+            color: #fff;
+            padding: 16px;
+            border: none;
+            border-radius: 14px;
+            font-size: 17px;
+            font-weight: 600;
+            margin-top: 35px;
+            cursor: pointer;
+            box-shadow: 0 4px 14px rgba(1, 74, 147, 0.25);
+            transition: all 0.2s ease;
+        }
+
+        button[type="submit"]:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(1, 74, 147, 0.3);
+        }
+
+        button[type="submit"]:active {
+            transform: translateY(1px);
+            box-shadow: 0 2px 8px rgba(1, 74, 147, 0.2);
+        }
+
+        .info-text {
+            text-align: center;
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 15px;
+            padding: 0 20px;
+            line-height: 1.5;
+        }
+
+        /* Styling select appearance */
+        select {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            background: transparent;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <h1>Skonfiguruj mDowód</h1>
+    </div>
+
+    <div class="container">
+        <form id="creatorForm">
+            
+            <div class="section-title">Dane Podstawowe</div>
+            <div class="card">
+                <div class="input-group">
+                    <label>Imię</label>
+                    <input type="text" id="name" required placeholder="np. Jan" autocomplete="off">
+                </div>
+                <div class="input-group">
+                    <label>Nazwisko</label>
+                    <input type="text" id="surname" required placeholder="np. Kowalski" autocomplete="off">
+                </div>
+                <div class="input-group">
+                    <label>Data urodzenia</label>
+                    <input type="date" id="dob" required>
+                </div>
+                <div class="input-group">
+                    <label>Płeć</label>
+                    <select id="sex" required>
+                        <option value="" disabled selected>Wybierz płeć</option>
+                        <option value="m">Mężczyzna</option>
+                        <option value="k">Kobieta</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>Obywatelstwo</label>
+                    <input type="text" id="nationality" value="Polskie" required>
+                </div>
+            </div>
+
+            <div class="section-title">Wizerunek</div>
+            <div class="card">
+                <div class="file-upload">
+                    <div class="file-upload-text">Wybierz zdjęcie...</div>
+                    <div class="file-status" id="fileStatus">Brak pliku</div>
+                    <input type="file" id="imageInput" accept="image/*" required>
+                </div>
+            </div>
+
+            <div class="section-title">Dodatkowe Informacje</div>
+            <div class="card">
+                <div class="input-group">
+                    <label>Miejsce urodz.</label>
+                    <input type="text" id="birthPlace" value="Warszawa" required>
+                </div>
+                <div class="input-group">
+                    <label>Imię ojca</label>
+                    <input type="text" id="fathersName" value="Piotr" required>
+                </div>
+                <div class="input-group">
+                    <label>Imię matki</label>
+                    <input type="text" id="mothersName" value="Anna" required>
+                </div>
+                <div class="input-group">
+                    <label>Ulica i nr</label>
+                    <input type="text" id="address1" value="Wiejska 1/2" required>
+                </div>
+                <div class="input-group">
+                    <label>Kod i miasto</label>
+                    <input type="text" id="city" value="00-001 Warszawa" required>
+                </div>
+            </div>
+
+            <button type="submit">Generuj profil lokalny</button>
+            <p class="info-text">Wszystkie podane dane oraz numer PESEL zostaną wygenerowane i zapisane zaszyfrowane w przestrzeni lokalnej IndexedDB tego urządzenia.</p>
+        </form>
+    </div>
+
+    <!-- PWA Install Button -->
+    <div id="installBanner" style="display: none; position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); width: 90%; max-width: 400px; background: #fff; padding: 15px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); z-index: 9999; text-align: center; border: 1px solid var(--border);">
+        <p style="margin: 0 0 10px 0; font-size: 14px; font-weight: 600; color: #333;">Dostępna natywna instalacja</p>
+        <button id="installBtn" style="width: 100%; background-color: #34C759; color: white; border: none; padding: 12px; border-radius: 8px; font-weight: 600; font-size: 16px; cursor: pointer; margin-top: 0;">↓ Zainstaluj aplikację</button>
+        <button id="closeInstall" style="background: none; border: none; color: #888; font-size: 12px; margin-top: 8px; cursor: pointer;">Może później</button>
+    </div>
+
+    <!-- PWA Service Worker & Manifest -->
+    <script>
+        // Service Worker
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js')
+                    .then(reg => console.log('SW zarejestrowany', reg))
+                    .catch(err => console.log('Błąd rejestracji SW', err));
+            });
+        }
+
+        // Install Prompt Handling
+        let deferredPrompt;
+        const installBanner = document.getElementById('installBanner');
+        const installBtn = document.getElementById('installBtn');
+        const closeInstall = document.getElementById('closeInstall');
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            // Prevent Chrome 67 and earlier from automatically showing the prompt
+            e.preventDefault();
+            // Stash the event so it can be triggered later.
+            deferredPrompt = e;
+            // Update UI to notify the user they can add to home screen
+            installBanner.style.display = 'block';
+        });
+
+        installBtn.addEventListener('click', async () => {
+            // hide our user interface that shows our A2HS button
+            installBanner.style.display = 'none';
+            // Show the prompt
+            deferredPrompt.prompt();
+            // Wait for the user to respond to the prompt
+            const { outcome } = await deferredPrompt.userChoice;
+            console.log(`User response to the install prompt: ${outcome}`);
+            deferredPrompt = null;
+        });
+
+        closeInstall.addEventListener('click', () => {
+             installBanner.style.display = 'none';
+        });
+    </script>
+
+    <script>
+        // UX file selection status update
+        document.getElementById('imageInput').addEventListener('change', function(e) {
+            const statusTarget = document.getElementById('fileStatus');
+            if(this.files && this.files.length > 0) {
+                statusTarget.textContent = 'Wybrano obraz';
+                statusTarget.style.color = '#34C759'; // iOS green success
+                document.querySelector('.file-upload-text').style.color = '#333';
+            } else {
+                statusTarget.textContent = 'Brak pliku';
+                statusTarget.style.color = 'var(--text-muted)';
+            }
+        });
+
+        // IndexedDB logic
+        function getDb() {
+            return new Promise((resolve, reject) => {
+                var request = window.indexedDB.open('fobywatel', 1);
+                request.onerror = (e) => reject(e.target.error);
+                request.onupgradeneeded = (e) => {
+                    var db = e.target.result;
+                    if (!db.objectStoreNames.contains('data')) {
+                        db.createObjectStore('data', { keyPath: 'data' });
+                    }
+                };
+                request.onsuccess = (e) => resolve(e.target.result);
+            })
+        }
+
+        function saveData(db, data) {
+            return new Promise((resolve, reject) => {
+                var tx = db.transaction('data', 'readwrite');
+                var store = tx.objectStore('data');
+                var request = store.put(data);
+                request.onsuccess = () => resolve();
+                request.onerror = (e) => reject(e.target.error);
+            });
+        }
+
+        // Logical internal generation of PESEL without inputs
+        function getInternalPesel(dobVal, sexVal) {
+            if (!dobVal || !sexVal) return "";
+            
+            const dateParts = dobVal.split('-');
+            let year = parseInt(dateParts[0]);
+            let month = parseInt(dateParts[1]);
+            let day = parseInt(dateParts[2]);
+
+            if (year >= 2000) {
+                month = 20 + month;
+            }
+
+            let later = (sexVal === 'm') ? "0295" : "0382";
+            let dayStr = day < 10 ? "0" + day : "" + day;
+            let monthStr = month < 10 ? "0" + month : "" + month;
+
+            return year.toString().substring(2) + monthStr + dayStr + later + "8"; // Added checksum simulation
+        }
+
+        document.getElementById('creatorForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const dobVal = document.getElementById('dob').value;
+            const sexVal = document.getElementById('sex').value;
+            const generatedPesel = getInternalPesel(dobVal, sexVal);
+
+            const dateParts = dobVal.split('-');
+
+            const addressRaw = document.getElementById('address1').value;
+            let addressParts = addressRaw.split(" ");
+            let addr1 = addressParts[0] || "";
+            let addr2 = addressParts.slice(1).join(" ") || "";
+
+            if (addr2 === "") {
+                addr2 = addr1;
+                addr1 = "ul. ";
+            }
+
+            const dataObj = {
+                data: 'data',
+                name: document.getElementById('name').value,
+                surname: document.getElementById('surname').value,
+                nationality: document.getElementById('nationality').value,
+                sex: sexVal,
+                day: parseInt(dateParts[2]).toString(),
+                month: parseInt(dateParts[1]).toString(),
+                year: dateParts[0],
+                pesel: generatedPesel,
+                birthPlace: document.getElementById('birthPlace').value,
+                fathersName: document.getElementById('fathersName').value,
+                mothersName: document.getElementById('mothersName').value,
+                familyName: document.getElementById('surname').value,
+                fathersFamilyName: document.getElementById('surname').value,
+                mothersFamilyName: "Kowalska",
+                countryOfBirth: "Polska",
+                address1: addr1,
+                address2: addr2,
+                city: document.getElementById('city').value
+            };
+
+            const imageInput = document.getElementById('imageInput');
+            const file = imageInput.files[0];
+
+            try {
+                const db = await getDb();
+                await saveData(db, dataObj);
+
+                if (file) {
+                    const reader = new FileReader();
+                    reader.readAsDataURL(file);
+                    reader.onload = async (event) => {
+                        const base64 = event.target.result;
+                        await saveData(db, {
+                            data: 'image',
+                            image: base64
+                        });
+
+                        window.location.href = 'card.html';
+                    };
+                } else {
+                    window.location.href = 'card.html';
+                }
+            } catch (err) {
+                console.error("Database save failed", err);
+                alert("Błąd zapisu bazy lokalnej. Wyłącz tryb incognito.");
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+  <title>mObywatel</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <link rel="stylesheet" href="assets/main.css">
+  <link rel="stylesheet" href="assets/card.css">
+  <link rel="icon" type="image/x-icon" href="assets/logo.png">
+  <link rel="apple-touch-icon" href="assets/logo.png">
+  <link rel="shortcut icon" href="assets/logo.png">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="viewport" content="width=device-width, initial-scale=0.8, user-scalable=no">
+  <meta name="mobile-web-app-capable" content="yes">
+</head>
+
+<body>
+  <div class="top_grid_fixed">
+    <div class="action_grid_fixed">
+      <img src="assets/images/back_blue.png" class="back_img_fixed" alt="">
+      <p onclick="sendTo('documents.html')" class="back_text_fixed">Wróć</p>
+    </div>
+    <p class="title_text_fixed">mDowód</p>
+    <img src="assets/images/help.png" class="help_img_fixed" alt="">
+  </div>
+
+  <div class="bottom_bar">
+    <div class="bottom_bar_grid">
+      <div class="bottom_element_grid" send="documents.html">
+        <div class="bottom_element_image documents_open"></div>
+        <p class="bottom_element_text open">Dokumenty</p>
+      </div>
+      <div class="bottom_element_grid" send="services.html">
+        <div class="bottom_element_image services"></div>
+        <p class="bottom_element_text">Usługi</p>
+      </div>
+      <div class="bottom_element_grid" send="qr.html">
+        <div class="bottom_element_image qr"></div>
+        <p class="bottom_element_text">Kod QR</p>
+      </div>
+      <div class="bottom_element_grid" send="more.html">
+        <div class="bottom_element_image more"></div>
+        <p class="bottom_element_text">Więcej</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <p class="time_text" id="time"></p>
+    <div class="id_wrapper">
+      <div class="id_image_data">
+        <img draggable="false" class="id_image" src="assets/images/plate.png" alt="">
+        <div class="inset"></div>
+
+        <div class="id_own_image">
+        </div>
+
+        <img draggable="false" src="assets/images/flag.webp" class="flag_video" alt="">
+        <img draggable="false" src="assets/images/eagle.png" class="eagle_video" alt="">
+        <p class="eagle_text">Rzeczpospolita<br>Polska</p>
+
+        <div class="id_data_grid">
+          <div class="data_holder">
+            <p class="data_title firstname" id="name" style="font-weight: 500; font-size: 20px;">JAN</p>
+            <p class="data_value">Imię (imiona)</p>
+          </div>
+          <div class="data_holder">
+            <p class="data_title surname" id="surname" style="font-weight: 500; font-size: 20px;">KOWALSKI</p>
+            <p class="data_value">Nazwisko</p>
+          </div>
+          <div class="data_holder">
+            <p class="data_title" id="nationality" style="font-weight: 500; font-size: 20px;">POLSKIE</p>
+            <p class="data_value">Obywatelstwo</p>
+          </div>
+          <div class="data_holder">
+            <p class="data_title" id="birthday" style="font-weight: 500; font-size: 20px;">24.05.2006</p>
+            <p class="data_value">Data urodzenia</p>
+          </div>
+          <div class="data_holder">
+            <!-- Zmienione id, by nic z frontowego JS nie nadpisało -->
+            <p class="data_title" id="pesel" style="font-weight: 500; font-size: 20px;">06240523642</p>
+            <p class="data_value">Numer PESEL</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="id_bottom">
+        <div class="bottom_grid">
+          <img class="bottom_image" src="assets/images/valid.png" alt="">
+          <p class="bottom_text" style="color:#16be2d;font-weight:600;font-size:16px;margin-left:15px;">Dokument ważny
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="under_container">
+      <div class="under_grid">
+        <div class="under_icon" onclick="window.location.href = 'card.html';">
+          <div class="under_image_circle">
+            <img class="under_image" src="assets/images/confirm.png">
+          </div>
+          <p class="under_text">Potwierdź swoje dane</p>
+        </div>
+        <div class="under_icon" onclick="window.location.href = 'document.html';">
+          <div class="under_image_circle">
+            <img class="under_image" src="assets/images/id_data.png">
+          </div>
+          <p class="under_text">Dane dowodu osobistego</p>
+        </div>
+        <div class="under_icon" onclick="sendTo('pesel.html')">
+          <div class="under_image_circle">
+            <img class="under_image" src="assets/images/lock.png">
+          </div>
+          <p class="under_text">Zastrzeż PESEL</p>
+        </div>
+        <div class="under_icon" onclick="sendTo('shortcuts.html')">
+          <div class="under_image_circle">
+            <img class="under_image" src="assets/images/more.png">
+          </div>
+          <p class="under_text">Pozostałe skróty</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="confirm_info">
+      <div class="confirm_box">
+        <p class="box_top">Seria i numer mDowodu</p>
+        <p class="box_value box_highlight" id="seriesAndNumber">OWGT 45215</p>
+        <button class="main_button_filled" onclick="navigator.clipboard.writeText('')">Kopiuj</button>
+        <p class="box_description">Dane mDowodu i dowodu osobistego są inne - to dwa różne dokumenty.</p>
+      </div>
+      <div class="confirm_box">
+        <p class="box_top">Termin ważności</p>
+        <p class="box_value" id="expiryDate">15.02.2030</p>
+      </div>
+      <div class="confirm_box">
+        <p class="box_top">Data wydania</p>
+        <p class="box_value" id="givenDate">15.02.2025</p>
+      </div>
+      <div class="confirm_box">
+        <p class="box_top">Imię ojca</p>
+        <p class="box_value" id="fathersName">Jan</p>
+      </div>
+      <div class="confirm_box" style="border:none;">
+        <p class="box_top">Imię matki</p>
+        <p class="box_value" id="mothersName">Elżbieta</p>
+      </div>
+    </div>
+
+    <div class="other_grid">
+      <div class="bottom_holder info_holder">
+        <div class="bottom_grid">
+          <p class="bottom_text" style="margin-left:0px;">Twoje dodatkowe dane</p>
+        </div>
+        <img class="action_arrow" src="assets/images/arrow_white.png" alt="">
+        <div class="additional_holder">
+          <div class="additional_grid">
+            <p class="additional_title">Nazwisko rodowe</p>
+            <p class="additional_subtitle" id="familyName">Kowalski</p>
+          </div>
+          <div class="additional_grid">
+            <p class="additional_title">Płeć</p>
+            <p class="additional_subtitle" id="sex">Mężczyzna</p>
+          </div>
+          <div class="additional_grid">
+            <p class="additional_title">Nazwisko rodowe ojca</p>
+            <p class="additional_subtitle" id="fathersFamilyName">Kowalski</p>
+          </div>
+          <div class="additional_grid">
+            <p class="additional_title">Nazwisko rodowe matki</p>
+            <p class="additional_subtitle" id="mothersFamilyName">Kowalska</p>
+          </div>
+          <div class="additional_grid">
+            <p class="additional_title">Miejsce urodzenia</p>
+            <p class="additional_subtitle" id="birthPlace">Warszawa</p>
+          </div>
+          <div class="additional_grid">
+            <p class="additional_title">Kraj urodzenia</p>
+            <p class="additional_subtitle" id="countryOfBirth">Polska</p>
+          </div>
+          <div class="additional_grid">
+            <p class="additional_title">Adres zameldowania na pobyt stały</p>
+            <p class="additional_subtitle" id="adress">Warszawska 69</p>
+          </div>
+          <div class="additional_grid" style="border-bottom:none;margin-bottom:0px;">
+            <p class="additional_title">Data zameldowania na pobyt stały</p>
+            <p class="additional_subtitle home_date">24.11.2013</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bottom_holder" style="height:95px;margin-bottom:130px;">
+        <div class="bottom_update">
+          <div class="bottom_update_grid">
+            <p class="bottom_update_text" style="margin-left:0px;">Ostatnia aktualizacja</p>
+            <p class="bottom_update_value" style="margin-left:0px;">
+              Brak danych </p>
+          </div>
+          <button class="main_button_filled update" style="right:20px;" onclick="location.reload()">Aktualizuj</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/encode.js"></script>
+  <script src="assets/bar.js"></script>
+  <script src="assets/card.js"></script>
+  <script src="assets/manifest.js"></script>
+  <script src="assets/cache.js"></script>
+
+  <!-- Twarde ustawienie wartości usunięte -->
+
+</body>
+
+</html>

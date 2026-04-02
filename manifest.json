@@ -1,0 +1,16 @@
+{
+  "name": "mDowód",
+  "short_name": "mDowód",
+  "theme_color": "#014A93",
+  "background_color": "#f5f6fb",
+  "display": "standalone",
+  "start_url": "index.html",
+  "icons": [
+    {
+      "src": "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMjAwIj48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iIzAxNEE5MyIvPjx0ZXh0IHg9IjEwMCIgeT0iMTE1IiBmaWxsPSIjRkZGRkZGIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iODAiIHRleHQtYW5jaG9yPSJtaWRkbGUiPm08L3RleHQ+PC9zdmc+",
+      "sizes": "192x192 256x256 512x512 any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
