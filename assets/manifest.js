@@ -7,12 +7,12 @@ let webManifest = {
     "start_url": "index.html",
     "icons": [
         {
-            "src": "assets/logo.png",
+            "src": "assets/images/logo_large.png",
             "sizes": "192x192",
             "type": "image/png"
         },
         {
-            "src": "assets/logo.png",
+            "src": "assets/images/logo_large.png",
             "sizes": "512x512",
             "type": "image/png"
         }
