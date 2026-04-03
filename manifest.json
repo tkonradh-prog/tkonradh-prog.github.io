@@ -3,9 +3,9 @@
   "short_name": "mDowód",
   "description": "Apliakcja",
   "theme_color": "#cd0000",
-  "background_color": "#f5f6fb",
-  "display": "standalone",
-  "start_url": "https://tkonradh-prog.github.io/index.html",
+  "background_color": "#121212",
+  "display": "fullscreen",
+  "start_url": "./index.html",
   "dir": "auto",
   "lang": "pl",
   "icons": [
